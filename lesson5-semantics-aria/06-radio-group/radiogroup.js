@@ -23,7 +23,8 @@
     this.el.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.el.addEventListener('click', this.handleClick.bind(this));
 
-    // Any more initialization to do here?
+    // Set role for radiogroup
+    this.el.setAttribute('role', 'radiogroup');
 
     var firstButton = true;
     for (var button of this.buttons) {
@@ -34,7 +35,8 @@
         button.tabIndex = "-1";
       }
 
-      // What about here?
+      // Set role for buttons
+      button.setAttribute('role', 'radio');
     }
 
   }
@@ -100,6 +102,11 @@
     this.focusedButton.setAttribute('checked', '');
 
     // ... we probably want to do some stuff here, too ...
+    if (this.focusedButton.hasAttribute('checked')) {
+      this.focusedButton.setAttribute('aria-checked', 'true');
+    } else {
+      this.focusedButton.setAttribute('aria-checked', 'false');
+    }
 
   };
 
